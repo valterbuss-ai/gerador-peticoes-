@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrevista Inicial - Direito Trabalhista</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .form-container {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2::before {
+            content: "📋";
+            font-size: 1.2em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-item:hover {
+            background: #f0f8ff;
+            border-color: #3498db;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(46, 204, 113, 0.4);
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        .info-box {
+            background: #e8f4f8;
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #0c5460;
+        }
+
+        .info-box::before {
+            content: "ℹ️";
+            margin-right: 8px;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                flex-direction: column;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Entrevista Inicial</h1>
+            <p>Direito Trabalhista - Coleta de Informações</p>
+        </div>
+
+        <div class="form-container">
+            <form id="entrevistaForm">
+                <!-- DADOS PESSOAIS DO REQUERENTE -->
+                <div class="section">
+                    <h2>Dados Pessoais do Requerente</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nome">Nome Completo <span class="required">*</span></label>
+                            <input type="text" id="nome" name="nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cpf">CPF <span class="required">*</span></label>
+                            <input type="text" id="cpf" name="cpf" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="rg">RG</label>
+                            <input type="text" id="rg" name="rg">
+                        </div>
+                        <div class="form-group">
+                            <label for="data_nascimento">Data de Nascimento</label>
+                            <input type="date" id="data_nascimento" name="data_nascimento">
+                        </div>
+                        <div class="form-group">
+                            <label for="estado_civil">Estado Civil</label>
+                            <select id="estado_civil" name="estado_civil">
+                                <option value="">Selecione...</option>
+                                <option value="solteiro">Solteiro(a)</option>
+                                <option value="casado">Casado(a)</option>
+                                <option value="divorciado">Divorciado(a)</option>
+                                <option value="viuvo">Viúvo(a)</option>
+                                <option value="uniao_estavel">União Estável</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="profissao">Profissão</label>
+                            <input type="text" id="profissao" name="profissao">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone">Telefone <span class="required">*</span></label>
+                            <input type="tel" id="telefone" name="telefone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="endereco">Endereço Completo <span class="required">*</span></label>
+                        <textarea id="endereco" name="endereco" required placeholder="Rua, número, bairro, cidade, CEP"></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="pis">PIS/PASEP</label>
+                            <input type="text" id="pis" name="pis">
+                        </div>
+                        <div class="form-group">
+                            <label for="ctps">CTPS (Número e Série)</label>
+                            <input type="text" id="ctps" name="ctps">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DADOS DA EMPRESA -->
+                <div class="section">
+                    <h2>Dados da Empresa</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="empresa_nome">Razão Social/Nome da Empresa <span class="required">*</span></label>
+                            <input type="text" id="empresa_nome" name="empresa_nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="empresa_cnpj">CNPJ</label>
+                            <input type="text" id="empresa_cnpj" name="empresa_cnpj">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="empresa_endereco">Endereço da Empresa</label>
+                        <textarea id="empresa_endereco" name="empresa_endereco" placeholder="Endereço completo da empresa"></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="empresa_telefone">Telefone da Empresa</label>
+                            <input type="tel" id="empresa_telefone" name="empresa_telefone">
+                        </div>
+                        <div class="form-group">
+                            <label for="empresa_atividade">Atividade da Empresa</label>
+                            <input type="text" id="empresa_atividade" name="empresa_atividade">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DADOS DO CONTRATO DE TRABALHO -->
+                <div class="section">
+                    <h2>Dados do Contrato de Trabalho</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cargo">Cargo/Função <span class="required">*</span></label>
+                            <input type="text" id="cargo" name="cargo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="data_admissao">Data de Admissão <span class="required">*</span></label>
+                            <input type="date" id="data_admissao" name="data_admissao" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="data_demissao">Data de Demissão</label>
+                            <input type="date" id="data_demissao" name="data_demissao">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="salario">Último Salário (R$) <span class="required">*</span></label>
+                            <input type="number" step="0.01" id="salario" name="salario" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="jornada">Jornada de Trabalho</label>
+                            <input type="text" id="jornada" name="jornada" placeholder="Ex: 44h semanais, 8h diárias">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="horario_trabalho">Horário de Trabalho</label>
+                            <input type="text" id="horario_trabalho" name="horario_trabalho" placeholder="Ex: 08:00 às 17:00">
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo_demissao">Tipo de Demissão</label>
+                            <select id="tipo_demissao" name="tipo_demissao">
+                                <option value="">Selecione...</option>
+                                <option value="sem_justa_causa">Sem Justa Causa</option>
+                                <option value="justa_causa">Justa Causa</option>
+                                <option value="pedido_demissao">Pedido de Demissão</option>
+                                <option value="acordo">Acordo</option>
+                                <option value="termino_contrato">Término de Contrato</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="atividades">Descrição das Atividades Exercidas</label>
+                        <textarea id="atividades" name="atividades" placeholder="Descreva detalhadamente as atividades exercidas"></textarea>
+                    </div>
+                </div>
+
+                <!-- PEDIDOS/DIREITOS PLEITEADOS -->
+                <div class="section">
+                    <h2>Pedidos/Direitos Pleiteados</h2>
+                    
+                    <div class="info-box">
+                        Marque todos os direitos que não foram pagos ou foram pagos incorretamente:
+                    </div>
+
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="aviso_previo" name="direitos[]" value="aviso_previo">
+                            <label for="aviso_previo">Aviso Prévio</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="decimo_terceiro" name="direitos[]" value="decimo_terceiro">
+                            <label for="decimo_terceiro">13º Salário</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="ferias" name="direitos[]" value="ferias">
+                            <label for="ferias">Férias + 1/3</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="fgts" name="direitos[]" value="fgts">
+                            <label for="fgts">FGTS + 40%</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="horas_extras" name="direitos[]" value="horas_extras">
+                            <label for="horas_extras">Horas Extras</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="adicional_noturno" name="direitos[]" value="adicional_noturno">
+                            <label for="adicional_noturno">Adicional Noturno</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="dsr" name="direitos[]" value="dsr">
+                            <label for="dsr">DSR sobre Horas Extras</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="intervalo_intrajornada" name="direitos[]" value="intervalo_intrajornada">
+                            <label for="intervalo_intrajornada">Intervalo Intrajornada</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="intervalo_interjornada" name="direitos[]" value="intervalo_interjornada">
+                            <label for="intervalo_interjornada">Intervalo Interjornada</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="salario_atrasado" name="direitos[]" value="salario_atrasado">
+                            <label for="salario_atrasado">Salários Atrasados</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="diferenca_salarial" name="direitos[]" value="diferenca_salarial">
+                            <label for="diferenca_salarial">Diferenças Salariais</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="equiparacao_salarial" name="direitos[]" value="equiparacao_salarial">
+                            <label for="equiparacao_salarial">Equiparação Salarial</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="verbas_rescistorias" name="direitos[]" value="verbas_rescistorias">
+                            <label for="verbas_rescistorias">Verbas Rescisórias</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="dano_moral" name="direitos[]" value="dano_moral">
+                            <label for="dano_moral">Dano Moral</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="reconhecimento_vinculo" name="direitos[]" value="reconhecimento_vinculo">
+                            <label for="reconhecimento_vinculo">Reconhecimento de Vínculo</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="adicional_periculosidade" name="direitos[]" value="adicional_periculosidade">
+                            <label for="adicional_periculosidade">Adicional de Periculosidade</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="adicional_insalubridade" name="direitos[]" value="adicional_insalubridade">
+                            <label for="adicional_insalubridade">Adicional de Insalubridade</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="outros" name="direitos[]" value="outros">
+                            <label for="outros">Outros</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DETALHES ESPECÍFICOS -->
+                <div class="section">
+                    <h2>Detalhes Específicos</h2>
+                    
+                    <div class="form-group">
+                        <label for="horas_extras_detalhes">Detalhes sobre Horas Extras</label>
+                        <textarea id="horas_extras_detalhes" name="horas_extras_detalhes" placeholder="Quantas horas extras por dia/semana? Em que período? Havia controle de ponto?"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dano_moral_detalhes">Detalhes sobre Dano Moral</label>
+                        <textarea id="dano_moral_detalhes" name="dano_moral_detalhes" placeholder="Descreva os fatos que ensejaram o dano moral"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="testemunhas">Testemunhas</label>
+                        <textarea id="testemunhas" name="testemunhas" placeholder="Nome, telefone e qualificação das testemunhas"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="observacoes">Observações Gerais</label>
+                        <textarea id="observacoes" name="observacoes" placeholder="Informações adicionais relevantes ao caso"></textarea>
+                    </div>
+                </div>
+
+                <!-- DOCUMENTOS -->
+                <div class="section">
+                    <h2>Documentos Disponíveis</h2>
+                    
+                    <div class="info-box">
+                        Marque os documentos que o cliente possui:
+                    </div>
+
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="doc_ctps" name="documentos[]" value="ctps">
+                            <label for="doc_ctps">CTPS</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="doc_contrato" name="documentos[]" value="contrato">
+                            <label for="doc_contrato">Contrato de Trabalho</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="doc_holerites" name="documentos[]" value="holerites">
+                            <label for="doc_holerites">Holerites</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="doc_trct" name="documentos[]" value="trct">
+                            <label for="doc_trct">TRCT</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="doc_controle_ponto" name="documentos[]" value="controle_ponto">
+                            <label for="doc_controle_ponto">Controle de Ponto</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="doc_comunicacoes" name="documentos[]" value="comunicacoes">
+                            <label for="doc_comunicacoes">WhatsApp/E-mails</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="doc_fotos" name="documentos[]" value="fotos">
+                            <label for="doc_fotos">Fotos/Vídeos</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="doc_outros" name="documentos[]" value="outros">
+                            <label for="doc_outros">Outros</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-container">
+                    <button type="submit" class="btn-submit">
+                        Gerar Petição Inicial
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('entrevistaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Coleta todos os dados do formulário
+            const formData = new FormData(this);
+            const dados = {};
+            
+            // Converte FormData para objeto
+            for (let [key, value] of formData.entries()) {
+                if (dados[key]) {
+                    if (Array.isArray(dados[key])) {
+                        dados[key].push(value);
+                    } else {
+                        dados[key] = [dados[key], value];
+                    }
+                } else {
+                    dados[key] = value;
+                }
+            }
+            
+            // Aqui você pode enviar os dados para sua API/IA
+            console.log('Dados coletados:', dados);
+            
+            // Exemplo de como enviar para uma API
+            /*
+            fetch('/api/gerar-peticao', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dados)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Petição gerada:', data);
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+            });
+            */
+            
+            alert('Dados coletados com sucesso! Verifique o console para ver os dados.');
+        });
+
+        // Máscaras para CPF e CNPJ
+        document.getElementById('cpf').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+            e.target.value = value;
+        });
+
+        document.getElementById('empresa_cnpj').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
+            e.target.value = value;
+        });
+    </script>
+</body>
+</html>
